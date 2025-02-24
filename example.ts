@@ -5,11 +5,11 @@ import { privateKeyToAccount } from 'viem/accounts';
 import { waitForTransactionReceipt } from 'viem/actions';
 
 async function run() {
-  console.log('walletClient', walletClient.account.address);
+  console.log('USER', walletClient.account.address);
 
   // 0. Set up a sponsor (first anvil account)
   const sponsor = privateKeyToAccount('0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80');
-  console.log('sponsor', sponsor.address);
+  console.log('SPONSOR', sponsor.address);
 
   // 1. Authorize injection of the Contract's bytecode into our Account.
   const authorization = await walletClient.signAuthorization({
@@ -29,6 +29,11 @@ async function run() {
         data: '0x',
         to: '0x124b082e8DF36258198da4Caa3B39c7dFa64D9cE', 
         value: parseEther('1'), 
+      },
+      {
+        data: '0x',
+        to: '0x124b082e8DF36258198da4Caa3B39c7dFa64D9cE', 
+        value: parseEther('2'), 
       }
     ]],
     authorizationList: [authorization],
